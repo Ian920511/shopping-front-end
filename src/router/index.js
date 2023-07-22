@@ -5,16 +5,21 @@ import UserLogin from '../views/UserLogin.vue'
 
 const routes = [
   {
-    path: '/login',
-    name: 'user-login',
-    component: UserLogin
+    path: "/login",
+    name: "user-login",
+    component: UserLogin,
   },
   {
-    path: '/:pathMatch(.*)*',
-    name: 'not-found',
-    component: NotFound
+    path: "/register",
+    name: "user-register",
+    component: () => import('../views/UserRegister.vue'),
   },
-]
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: NotFound,
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
