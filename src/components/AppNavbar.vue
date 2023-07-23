@@ -24,35 +24,62 @@
       class="navbar-collapse collapse d-flex align-items-center justify-content-end"
     >
       <div class="ml-auto d-flex align-items-center">
-
-        <router-link
-             to="#" 
-             class="text-white mx-3"
-        >
-         我要成為賣家
-       </router-link>
-
-       <router-link
-             to="#" 
-             class="text-white mx-3"
-        >
-         我要成為買家
-       </router-link>
-
-        <!-- is user is login -->
+        <template v-if="isAuthenticated">
           <router-link
-             to="#" 
-             class="text-white mx-3"
+              to="#" 
+              class="text-white mx-3"
+              v-if="currentUser.role === 'buyer'"
+          >
+          我要成為賣家
+          </router-link>
+
+          <router-link
+                to="#" 
+                class="text-white mx-3"
+                v-if="currentUser.role === 'seller'"
+            >
+            我要成為買家
+          </router-link>
+
+        
+          <router-link
+              to="#" 
+              class="text-white mx-3"
           > 
-           使用者 您好
+           {{ currentUser.name || '使用者' }} 您好
          </router-link>
          <button
            type="button" 
            class="btn btn-sm btn-outline-success my-2 my-sm-0"
+           @click="logout"
           >
            登出
           </button>
+        </template>
       </div>
     </div>
   </nav>
 </template>
+
+<script>
+import { useRouter } from 'vue-router'
+import { useUserStore } from './../stores/userStore'
+
+export default {
+  setup() {
+    const router  = useRouter()
+    const userStore = useUserStore()
+
+    const logout = () => {
+      userStore.revokeAuthentication()
+      router.push('/login')
+    }
+
+    return {
+      currentUser: userStore.currentUser,
+      isAuthenticated: userStore.isAuthenticated,
+      logout
+    }
+  },
+}
+</script>

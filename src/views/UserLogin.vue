@@ -96,7 +96,7 @@ export default {
         localStorage.setItem('token', data.token)
 
         userStore.setCurrentUser(data.user)
-
+        
         router.push('/products')
       } catch (error) {
         password.value = ''

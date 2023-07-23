@@ -46,6 +46,7 @@ export const useUserStore = defineStore({
         ...currentUser
       }
       this.isAuthenticated = true
+      console.log(this.isAuthenticated);
       this.token = localStorage.getItem('token')
     },
 
