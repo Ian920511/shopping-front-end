@@ -13,7 +13,7 @@
           id="account"
           v-model="account"
           name="account"
-          type="account"
+          type="text"
           class="form-control"
           placeholder="account"
           autocomplete="username"
@@ -58,19 +58,54 @@
 
 <script>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useUserStore } from './../stores/userStore'
+import authorizationAPI from './../apis/authorization'
+import { Toast } from './../utils/helper'
 
 export default {
   setup() {
     const account = ref('')
     const password = ref('')
 
-    const handleSubmit = () => {
-      const data = JSON.stringify({
-        account: account.value,
-        password: password.value
-      })
+    const router = useRouter()
+    const userStore = useUserStore()
 
-      console.log('data', data)
+    const handleSubmit =  async () => {
+      try {
+        if (!account.value || !password.value) {
+          Toast.fire({
+            icon: 'warning',
+            title: '請填入帳號 和 密碼'
+          })
+
+          return
+        }
+
+        const response = await authorizationAPI.login({
+          account: account.value,
+          password: password.value
+        })
+
+        const { data } = response
+
+        if (data.status === 'error') {
+          throw new Error(data.message)
+        }
+
+        localStorage.setItem('token', data.token)
+
+        userStore.setCurrentUser(data.user)
+
+        router.push('/products')
+      } catch (error) {
+        password.value = ''
+
+        Toast.fire({
+          icon: 'error',
+          title: '請確認您輸入了正確的帳號及密碼'
+        })
+      }
     }
 
     return {
