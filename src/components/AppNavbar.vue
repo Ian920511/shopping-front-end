@@ -64,11 +64,14 @@
 <script>
 import { useRouter } from 'vue-router'
 import { useUserStore } from './../stores/userStore'
+import { computed } from 'vue'
 
 export default {
   setup() {
     const router  = useRouter()
     const userStore = useUserStore()
+    const currentUser = computed(() => userStore.currentUser)
+    const isAuthenticated = computed(() => userStore.isAuthenticated)
 
     const logout = () => {
       userStore.revokeAuthentication()
@@ -76,10 +79,11 @@ export default {
     }
 
     return {
-      currentUser: userStore.currentUser,
-      isAuthenticated: userStore.isAuthenticated,
+      currentUser,
+      isAuthenticated,
       logout
     }
   },
+  
 }
 </script>

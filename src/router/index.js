@@ -7,7 +7,7 @@ const routes = [
   {
     path: "/",
     name: "root",
-    redirect: '/products',
+    redirect: "/products",
   },
   {
     path: "/login",
@@ -23,6 +23,11 @@ const routes = [
     path: "/products",
     name: "products",
     component: () => import("../views/AllProducts.vue"),
+  },
+  {
+    path: "/users/:userId/profile",
+    name: "user-profile",
+    component: () => import("../views/UserProfile.vue"),
   },
   {
     path: "/carts",
@@ -43,7 +48,8 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  linkExactActiveClass: 'active',
 })
 
 export default router
