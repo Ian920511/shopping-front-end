@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark p-3">
     <router-link
       class="navbar-brand"
-      to="/"
+      to="/products"
     >
       Shopping 購物網
     </router-link>

@@ -8,9 +8,9 @@
       >
       <div class="card-body">
         <p class="card-text title-wrap">
-          <a href="#">
+          <router-link :to="{ name: 'product', params: { id: product.id }}">
             {{ product.name }}
-          </a>
+          </router-link>
         </p>
         <span class="badge badge-secondary">{{ product.Category.name }}</span>
         <p class="card-text text-truncate">
