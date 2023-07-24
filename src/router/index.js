@@ -6,14 +6,14 @@ import Products from '../views/AllProducts'
 
 const routes = [
   {
-    path: "/",
-    name: "root",
-    redirect: "/products",
-  },
-  {
     path: "/login",
     name: "user-login",
     component: UserLogin,
+  },
+  {
+    path: "/",
+    name: "root",
+    redirect: "/login",
   },
   {
     path: "/register",

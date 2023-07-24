@@ -10,8 +10,8 @@
     <button
       class="navbar-toggler "
       type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
@@ -21,7 +21,7 @@
 
     <div
       id="navbarSupportedContent" 
-      class="navbar-collapse collapse d-flex align-items-center justify-content-end"
+      class="collapse navbar-collapse d-flex align-items-center justify-content-end"
     >
       <div class="ml-auto d-flex align-items-center">
         <template v-if="isAuthenticated">

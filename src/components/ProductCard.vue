@@ -12,7 +12,7 @@
             {{ product.name }}
           </a>
         </p>
-        <span class="badge bg-secondary">{{ product.Category.name }}</span>
+        <span class="badge badge-secondary">{{ product.Category.name }}</span>
         <p class="card-text text-truncate">
           {{ product.description }}
         </p>

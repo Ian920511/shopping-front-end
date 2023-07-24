@@ -1,7 +1,7 @@
 <template>
   <div class="container py-5">
     <NavTabs />
-    <!-- 餐廳類別標籤 RestaurantsNavPills -->
+    <product-nav-pills :categories="categories" />
 
     <div class="row">
       <product-card 
@@ -11,7 +11,13 @@
       />
     </div>
 
-    <!-- 分頁標籤 RestaurantPagination -->
+    <products-pagination 
+      :currentPage="currentPage"
+      :totalPage="totalPage"
+      :categoryId="categoryId"
+      :previousPage="previousPage"
+      :nextPage="nextPage"
+    />
   </div>
 </template>
 
@@ -19,6 +25,8 @@
 import { defineComponent, ref, onMounted, watch } from 'vue'
 import NavTabs from './../components/NavTabs.vue'
 import ProductCard from '@/components/ProductCard.vue';
+import ProductNavPills from '@/components/ProductNavPills.vue';
+import ProductsPagination from '@/components/ProductsPagination.vue';
 import ProductsAPI from './../apis/product'
 import { Toast } from '@/utils/helper';
 import { useRoute } from 'vue-router'
@@ -27,7 +35,9 @@ export default defineComponent({
   name: 'AllProducts',
   components: {
     NavTabs,
-    ProductCard
+    ProductCard,
+    ProductNavPills,
+    ProductsPagination,
   },
   setup() {
     const products = ref([])
