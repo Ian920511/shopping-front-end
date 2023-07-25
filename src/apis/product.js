@@ -9,4 +9,8 @@ export default {
   getProduct({ productId }) {
     return apiHelper.get(`/products/${productId}`)
   },
+
+  deleteProduct({ productId }) {
+    return apiHelper.delete(`/products/${productId}`)
+  }
 }

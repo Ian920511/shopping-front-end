@@ -26,14 +26,29 @@ const routes = [
     component: Products,
   },
   {
+    path: "/products/new",
+    name: "product-new",
+    component: () => import("./../views/ProductNew.vue"),
+  },
+  {
+    path: "/products/:id/edit",
+    name: "product-edit",
+    component: () => import("./../views/ProductEdit.vue"),
+  },
+  {
     path: "/products/:id",
     name: "product",
-    component: () => import('./../views/OneProduct.vue'),
+    component: () => import("./../views/OneProduct.vue"),
   },
   {
     path: "/users/profile",
     name: "user-profile",
     component: () => import("../views/UserProfile.vue"),
+  },
+  {
+    path: "/users/:userId/products",
+    name: "user-product",
+    component: () => import("../views/UserProduct.vue"),
   },
   {
     path: "/carts",

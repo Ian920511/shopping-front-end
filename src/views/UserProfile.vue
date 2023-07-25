@@ -5,12 +5,6 @@
       使用者資訊
     </h1>
     <form class="w-100" @submit.stop.prevent="handleSubmit">
-      <div class="text-center mb-4">
-        <h1 class="h3 mb-3 font-weight-normal">
-          Edit
-        </h1>
-      </div>
-
       <div class="form-label-group mb-2">
         <label for="name">Name</label>
         <input
@@ -69,6 +63,21 @@
         >
       </div>
 
+      <div class="form-label-group mb-2">
+        <label for="account">Role</label>
+        <input
+          id="role"
+          v-model= "role"
+          name="role"
+          type="text"
+          class="form-control"
+          placeholder="role"
+          autocomplete="role"
+          required
+          disabled
+        >
+      </div>
+
       <button
         class="btn btn-lg btn-primary d-block mx-auto mb-3"
         type="submit"
@@ -106,9 +115,9 @@ export default defineComponent({
     const account = ref(userStore.currentUser.account)
     const address = ref(userStore.currentUser.address)
     const tel = ref(userStore.currentUser.tel)
+    const role = ref(userStore.currentUser.role)
 
     const originalName = ref('')
-    const originalAccount = ref('')
     const originalAddress = ref('')
     const originalTel = ref('')
 
@@ -119,9 +128,9 @@ export default defineComponent({
         account.value = data.account
         address.value = data.address
         tel.value = data.tel
+        role.value = data.role
 
         originalName.value = data.name
-        originalAccount.value = data.account
         originalAddress.value = data.address
         originalTel.value = data.tel
 
@@ -171,7 +180,6 @@ export default defineComponent({
 
     const handleCancel = () => {
       name.value = originalName.value
-      account.value = originalAccount.value
       address.value = originalAddress.value
       tel.value = originalTel.value
     }
@@ -185,6 +193,7 @@ export default defineComponent({
       account,
       address,
       tel,
+      role,
       handleSubmit,
       handleCancel,
     }

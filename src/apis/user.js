@@ -15,7 +15,8 @@ export default {
 
   updateUser({ userId, formData }) {
     return apiHelper.put(`/users/${userId}`, formData)
-  }
+  },
+
 }
 
 
