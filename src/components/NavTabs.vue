@@ -59,7 +59,7 @@ export default defineComponent({
       {
         id: uuidv4(),
         title: '訂單資訊',
-        path: '/orders'
+        path: `/orders`
       },  
     ])
 

@@ -12,7 +12,9 @@ export default {
   getUserProfile ({ userId }) {
     return apiHelper.get(`/users/${userId}/profile`)
   },
-
+  getUserOrders ({ userId }) {
+    return apiHelper.get(`/users/${userId}/orders`)
+  },
   updateUser({ userId, formData }) {
     return apiHelper.put(`/users/${userId}`, formData)
   },
