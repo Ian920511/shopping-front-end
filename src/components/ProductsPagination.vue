@@ -1,9 +1,9 @@
 <template>
   <nav aria-label="Page navigation example">
-    <ul class="pagination">
+    <ul class="pagination justify-content-center">
       <li 
         v-show="previousPage"
-        :class="[page-item, { disabled: currentPage === 1 }]">
+        :class="['page-item', { disabled: currentPage === 1 }]">
         <router-link
           class="page-link"
           aria-label="Previous"
@@ -13,10 +13,10 @@
         </router-link>
       </li>
 
-      <li v-for="page in totalPage" :key="page" :class="[page-item, { active: currentPage === page}]">
+      <li v-for="page in totalPage" :key="page" :class="['page-item', { active: activePage === page}]">
         <router-link
           class="page-link"
-          :to="{ name: products, query: { categoryId, page}}"
+          :to="{ name: 'products', query: { categoryId, page}}"
         >
           {{ page }}
         </router-link>
@@ -25,7 +25,7 @@
 
       <li 
         v-show="nextPage"
-        :class="[page-item, { disabled: currentPage === totalPage.length }]">
+        :class="['page-item', { disabled: currentPage === totalPage.length }]">
         <router-link
           class="page-link"
           aria-label="Next"
@@ -39,7 +39,8 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, watch, ref } from 'vue';
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'ProductsPagination',
@@ -65,5 +66,20 @@ export default defineComponent({
       required: true
     }
   },
+  setup() {
+    const route = useRoute();
+
+    const activePage = ref(parseInt(route.query.page || '1'));
+
+    watch(() => route.query.page, (newVal) => {
+        activePage.value = parseInt(newVal || '1')
+    });
+
+   
+
+    return {
+      activePage,
+    };
+}
 });
 </script>

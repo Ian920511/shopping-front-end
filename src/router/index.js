@@ -31,7 +31,7 @@ const routes = [
     component: () => import('./../views/OneProduct.vue'),
   },
   {
-    path: "/users/:userId/profile",
+    path: "/users/profile",
     name: "user-profile",
     component: () => import("../views/UserProfile.vue"),
   },

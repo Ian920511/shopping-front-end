@@ -30,7 +30,7 @@ export default defineComponent({
       {
         id: uuidv4(),
         title: '使用者資訊',
-        path: '/users/:userId/profile'
+        path: '/users/profile'
       },
       {
         id: uuidv4(),

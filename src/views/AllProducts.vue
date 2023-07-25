@@ -57,7 +57,7 @@ export default defineComponent({
           categoryId: queryCategoryId
         })
 
-        const { products: proData, categories: catData , categoryId: catId, currentPage: page, totalPage: tPage, previousPage: prePage, nextPage: nexPage } = response.data
+        const { products: proData, categories: catData , categoryId: catId, page, totalPage: tPage, prev: prePage, next: nexPage } = response.data
 
         products.value = proData
         categories.value = catData

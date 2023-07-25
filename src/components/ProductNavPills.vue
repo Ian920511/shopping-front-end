@@ -1,6 +1,6 @@
 <template>
   <ul class="nav mb-4">
-    <li class="nav-item me-3">
+    <li class="nav-item me-3 ">
       <router-link
         class="nav-link"
         :to="{ name: 'products' }"
@@ -27,7 +27,6 @@
 <script>
   import { defineComponent } from 'vue';
 
-
   export default defineComponent({
     name: 'ProductNavPills',
     props: {
@@ -35,8 +34,6 @@
         type: Array,
         required: true
       }
-    },
-    
-
+    }, 
   });
 </script>
