@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-       <tr v-if="orders.length === 0">
+       <tr v-if="!orders.length | orders.length === 0">
         <td colspan="4" class="text-center">沒有任何訂單</td>
       </tr>
 
@@ -39,7 +39,7 @@
           <td>{{ orderDetail.Product.name }}</td>
           <td>{{ orderDetail.price }}</td>
           <td>{{ orderDetail.quantity }}</td>
-          <td v-if="index === order.OrderDetails.length - 1" class="no-top-border" :rowspan="order.OrderDetails.length">{{ order.totalPrice }}</td>
+          <td v-if="index === order.OrderDetails.length - 1" class="no-top-border" :rowspan="order.OrderDetails[index].length">{{ order.totalPrice }}</td>
         </tr>
       </template>
     </tbody>

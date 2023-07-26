@@ -19,6 +19,7 @@
         <h4 class="mt-2">
           <strong>價格:</strong> ${{ product.price }}
         </h4>
+        <p>剩餘數量: {{product.stock}}</p>
         <button
             @click.prevent.stop='addToCart(product.id)'
             type="button"
@@ -32,7 +33,9 @@
 </template> 
 
 <script>
-import { ref, toRefs } from 'vue'
+import { ref, toRefs, watch } from 'vue'
+import { Toast } from './../utils/helper'
+import cartAPI from './../apis/cart'
 
 export default {
   props: {
@@ -48,9 +51,27 @@ export default {
     // 使用 ref 創建一個新的響應式參考
     const product = ref(initialProduct.value)
 
-    const addToCart = (productId) => {
-      console.log(productId)
+    const addToCart = async (productId) => {
+ 
+      try {
+        await cartAPI.postCart({ productId, quantity: 1})
+        
+        Toast.fire({
+          icon:'success',
+          title: '成功加入購物車'
+        })
+
+      } catch (error) {
+        Toast.fire({
+          icon:'error',
+          title: '暫時無法加入購物車，請稍後再試'
+        })
+      }
     }
+
+     watch(initialProduct, (newValue) => {
+      product.value = newValue
+    })
 
     return {
       product,

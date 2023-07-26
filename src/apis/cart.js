@@ -5,7 +5,16 @@ export default {
     return apiHelper.get('/carts')
   },
 
-  postCart() {
-    return apiHelper.post('/carts')
-  }
+  postCart({ productId, quantity}) {
+    return apiHelper.post('/carts', { productId, quantity })
+  },
+
+  updateCart({ productId, quantity }) {
+    return apiHelper.put(`/carts/${productId}`, { quantity })
+  },
+
+  deleteCartProduct({ productId })  {
+    return apiHelper.delete(`/carts/${productId}`)
+  },
+
 }

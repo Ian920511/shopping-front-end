@@ -16,13 +16,6 @@ export default {
     ProductForm
   },
   setup() {
-    const handleAfterSubmit = (formData) => {
-
-      for (let [name, value] of formData.entries()) {
-        console.log(name + ': ' + value)
-      }
-    }
-
     const product = ref({
       id: -1,
       name: '',
@@ -50,7 +43,29 @@ export default {
           title: '無法取得商品資訊，請稍後再試'
         })
       }
+    }
 
+    const handleAfterSubmit = async (formData) => {
+      
+      try {
+        console.log('formData', {formData})
+
+        for (let [name, value] of formData.entries()) {
+        console.log(name + ': ' + value)
+      }
+        const { data } = await productAPI.updateProduct({ productId: product.value.id, formData})
+        console.log('data', data)
+
+        router.push({ name: 'products' })
+        if (data.status === 'error') {
+          throw new Error(data.message)
+        }
+      } catch (error) {
+        Toast.fire({
+          icon:'error',
+          title: '無法更新商品  資料，請稍後再試'
+        })
+      }
     }
 
     onMounted(() => {

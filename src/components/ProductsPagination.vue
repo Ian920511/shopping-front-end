@@ -7,7 +7,7 @@
         <router-link
           class="page-link"
           aria-label="Previous"
-          :to="{ name: 'products', query: { categoryId, page: previousPage }}"
+          :to="{ name: 'products', query: { categoryId, page: previousPage, keyword, min, max }}"
         >
           <span aria-hidden="true">&laquo;</span>
         </router-link>
@@ -29,7 +29,7 @@
         <router-link
           class="page-link"
           aria-label="Next"
-          :to="{ name: 'products', query: { categoryId, page: nextPage }}"
+          :to="{ name: 'products', query: { categoryId, page: nextPage, keyword, min, max }}"
         >
           <span aria-hidden="true">&raquo;</span>
         </router-link>
@@ -64,7 +64,19 @@ export default defineComponent({
     nextPage: {
       type: Number,
       required: true
-    }
+    },
+    keyword: {
+     type: String,
+     default: ''
+   },
+   min: {
+     type: [Number, String],
+     default: 0
+   },
+   max: {
+     type: [Number, String],
+     default: 0
+   }
   },
   setup() {
     const route = useRoute();

@@ -1,7 +1,7 @@
 import { apiHelper } from "@/utils/helper";
 
 export default {
-  getOrders ({ userId }) {
-    return apiHelper.get(`/users/${userId}/orders`)
+  postOrders () {
+    return apiHelper.post('/orders')
   }
 }

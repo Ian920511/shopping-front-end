@@ -23,10 +23,11 @@
       </tr>
     </thead>
     <tbody>
-       <tr v-if="orders.length === 0">
+       <tr v-if="!orders.length | orders.length === 0">
         <td colspan="4" class="text-center">沒有任何訂單</td>
       </tr>
       <tr
+        v-else
         v-for="order in orders"
         :key="order.id"
       >
