@@ -48,6 +48,10 @@
       </div>
     </div>
 
+    <div v-if="products.length === 0">
+      <h1> 沒有商品</h1>
+    </div>
+
     <div class="row">
       <product-card 
         v-for="product in products"

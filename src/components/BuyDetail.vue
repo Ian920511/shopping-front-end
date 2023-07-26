@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-       <tr v-if="!orders.length | orders.length === 0">
+       <tr v-if="!orders.length || orders.length === 0">
         <td colspan="4" class="text-center">沒有任何訂單</td>
       </tr>
 
@@ -79,6 +79,9 @@ export default {
     }
 
     const totalOrderPrice = computed(() => {
+      if (!Array.isArray(orders.value)) {
+        return 0;
+      }
       return orders.value.reduce((sum, order) => sum + order.totalPrice, 0);
     });
 

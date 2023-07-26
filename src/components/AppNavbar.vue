@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark p-3">
     <router-link
       class="navbar-brand"
-      to="/products"
+      to="/"
     >
       Shopping 購物網
     </router-link>
@@ -25,23 +25,7 @@
     >
       <div class="ml-auto d-flex align-items-center">
         <template v-if="isAuthenticated">
-          <router-link
-              to="#" 
-              class="text-white mx-3"
-              v-if="currentUser.role === 'buyer'"
-          >
-          我要成為賣家
-          </router-link>
 
-          <router-link
-                to="#" 
-                class="text-white mx-3"
-                v-if="currentUser.role === 'seller'"
-            >
-            我要成為買家
-          </router-link>
-
-        
           <router-link
               to="#" 
               class="text-white mx-3"

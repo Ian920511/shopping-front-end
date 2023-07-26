@@ -63,21 +63,6 @@
         >
       </div>
 
-      <div class="form-label-group mb-2">
-        <label for="account">Role</label>
-        <input
-          id="role"
-          v-model= "role"
-          name="role"
-          type="text"
-          class="form-control"
-          placeholder="role"
-          autocomplete="role"
-          required
-          disabled
-        >
-      </div>
-
       <button
         class="btn btn-lg btn-primary d-block mx-auto mb-3"
         type="submit"
@@ -120,6 +105,7 @@ export default defineComponent({
     const originalName = ref('')
     const originalAddress = ref('')
     const originalTel = ref('')
+    const originalRole = ref('')
 
     const fetchUserProfile = async () => {
       try {
@@ -133,6 +119,7 @@ export default defineComponent({
         originalName.value = data.name
         originalAddress.value = data.address
         originalTel.value = data.tel
+        originalRole.value = data.role
 
       } catch (error) {
         Toast.fire({
@@ -148,6 +135,7 @@ export default defineComponent({
           name: name.value,
           address: address.value,
           tel: tel.value,
+          role: role.value
         }
 
         const { data } = await userAPI.updateUser({ userId: userStore.currentUser.id, formData: userData })
@@ -159,10 +147,12 @@ export default defineComponent({
         name.value = data.name
         address.value = data.address
         tel.value = data.tel
+        role.value = data.role
 
         userStore.currentUser.name = name.value
         userStore.currentUser.address = address.value
         userStore.currentUser.tel = tel.value
+        userStore.currentUser.role = role.value
 
         Toast.fire({
           icon: 'success',
@@ -182,6 +172,7 @@ export default defineComponent({
       name.value = originalName.value
       address.value = originalAddress.value
       tel.value = originalTel.value
+      role.value = originalRole.value
     }
 
     onMounted(() => {
